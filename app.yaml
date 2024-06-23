@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  # ... other deployment configuration
+  volumes:
+  - name: aksstore9189
+    persistentVolumeClaim:
+      claimName: my-azure-file-pvc
+  containers:
+  - name: my-container
+    # ... other container configuration
+    volumeMounts:
+    - name: aksstore9189
+      mountPath: /data

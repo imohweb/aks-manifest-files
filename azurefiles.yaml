@@ -1,0 +1,9 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: azure-filesystem
+provisioner: kubernetes.io/azure-file
+parameters:
+  storageaccount: storageaccount
+  location: eastus
+  skuName: Standard_LRS

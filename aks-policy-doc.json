@@ -1,0 +1,32 @@
+{
+	"properties": {
+	  "displayName": "Enforce resource limits on kubernetes pods",
+	  "policyType": "Custom",
+	  "mode": "Microsoft.Kubernetes.Data",
+	  "description": "This policy ensures that all pods have resource limits defined",
+	  "metadata": {
+		"Category": "Kubernetes"
+	  },
+	  "parameters": {},
+	  "policyRule": {
+		"if": {
+		  "allOf": [
+			{
+			  "field": "kind",
+			  "equals": "Pod"
+			},
+			{
+			  "not": {
+				"field": "spec.containers[*].resources.limits",
+				"exists": true
+			  }
+			}
+		  ]
+		},
+		"then": {
+		  "effect": "deny"
+		}
+	  }
+	}
+  }
+  
